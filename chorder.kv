@@ -1,0 +1,26 @@
+#:kivy 1.11.1
+#:import Chorder chorder.Chorder
+
+<Label>:
+  font_name: '/Users/seongbin.im/Library/Fonts/NotoSansCJKkr-Regular.otf'
+
+BoxLayout:
+  chord_views: chord_views.__self__
+  root_note: root_note.__self__
+  comp_name: comp_name.__self__
+  orientation: 'vertical'
+  BoxLayout:
+    size_hint: (1, .1)
+    Spinner:
+      id: root_note
+      text: 'C'
+      values: Chorder.ROOT_NOTES.keys()
+      on_text: app.compose(self.text, comp_name.text)
+    Spinner:
+      id: comp_name
+      text: ''
+      values: Chorder.COMPONTENTS.keys()
+      on_text: app.compose(root_note.text, self.text)
+  GridLayout:
+    id: chord_views
+    size_hint: (1, .9)
